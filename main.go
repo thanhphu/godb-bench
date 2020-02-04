@@ -24,7 +24,7 @@ import (
 	"github.com/pkg/profile"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/opt"
-	"github.com/thanhphu/godb-bench/store"
+	rocksdb "github.com/tecbot/gorocksdb"
 )
 
 const mil float64 = 1000000
@@ -58,7 +58,7 @@ func fillEntry(e *entry) {
 
 var bdb *badger.DB
 
-var rdb *store.Store
+var rdb *rocksdb.DB
 var boltdb *bolt.DB
 var ldb *leveldb.DB
 var lmdbEnv *lmdb.Env
@@ -89,12 +89,12 @@ func writeBatch(entries []*entry) int {
 	}
 
 	if rdb != nil {
-		rb := rdb.NewWriteBatch()
+		rb := rocksdb.NewWriteBatch()
 		defer rb.Destroy()
 		for _, e := range entries {
 			rb.Put(e.Key, e.Value)
 		}
-		y.Check(rdb.WriteBatch(rb))
+		y.Check(rdb.Write(nil, rb))
 	}
 
 	if boltdb != nil {
@@ -180,7 +180,7 @@ func main() {
 		fmt.Println("Init Rocks")
 		os.RemoveAll(*dir + "/rocks")
 		os.MkdirAll(*dir+"/rocks", 0777)
-		rdb, err = store.NewStore(*dir + "/rocks")
+		rdb, err = rocksdb.OpenDb(nil, *dir+"/rocks/r.db")
 		y.Check(err)
 	} else if *which == "bolt" {
 		init = true

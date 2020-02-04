@@ -15,3 +15,6 @@
 # vendor/
 
 data
+*.log
+*.txt
+godb-bench

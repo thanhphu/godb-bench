@@ -11,7 +11,6 @@ require (
 	github.com/facebookgo/subset v0.0.0-20200203212716-c811ad88dec4 // indirect
 	github.com/paulbellamy/ratecounter v0.2.0
 	github.com/pkg/profile v1.4.0
-	github.com/stretchr/testify v1.3.0
 	github.com/syndtr/goleveldb v1.0.0
 	github.com/tecbot/gorocksdb v0.0.0-20191217155057-f0fad39f321c
 	golang.org/x/net v0.0.0-20200202094626-16171245cfb2
