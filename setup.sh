@@ -38,13 +38,15 @@ sudo service resolvconf restart
 cd ..
 git clone -b v6.6.4 https://github.com/facebook/rocksdb.git
 cd rocksdb
-export USE_RTTI=1 && make -j shared_lib
+export USE_RTTI=1
+make -j 8 shared_lib
 sudo make install-shared
 sudo ldconfig
 
 go get github.com/thanhphu/godb-bench/...
 go install github.com/thanhphu/godb-bench
+go install github.com/thanhphu/godb-bench/store
 
-cd $GOPATH/src/github.com/thanhphu/godb-bench
+cd ~/godb-bench
 ./run_write.sh
 ./run_read.sh
