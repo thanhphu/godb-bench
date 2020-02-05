@@ -35,9 +35,10 @@ sudo echo "nameserver 8.8.4.4" >> /etc/resolvconf/resolv.conf.d/head
 sudo echo "nameserver 8.8.8.8" >> /etc/resolvconf/resolv.conf.d/head
 sudo service resolvconf restart
 
-git clone https://github.com/facebook/rocksdb.git@v6.6.4
+cd ..
+git clone -b v6.6.4 https://github.com/facebook/rocksdb.git
 cd rocksdb
-export USE_RTTI=1 && make shared_lib
+export USE_RTTI=1 && make -j shared_lib
 sudo make install-shared
 sudo ldconfig
 
