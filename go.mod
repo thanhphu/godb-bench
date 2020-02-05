@@ -6,7 +6,6 @@ require (
 	github.com/bmatsuo/lmdb-go v1.8.0
 	github.com/boltdb/bolt v1.3.1
 	github.com/dgraph-io/badger v1.6.0
-	github.com/dgraph-io/badger-bench v0.0.0-20190920190938-db150ce8b629
 	github.com/facebookgo/ensure v0.0.0-20200202191622-63f1cf65ac4c // indirect
 	github.com/facebookgo/stack v0.0.0-20160209184415-751773369052 // indirect
 	github.com/facebookgo/subset v0.0.0-20200203212716-c811ad88dec4 // indirect
